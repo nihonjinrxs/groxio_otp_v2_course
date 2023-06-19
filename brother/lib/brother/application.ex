@@ -10,7 +10,12 @@ defmodule Brother.Application do
     children = [
       # Starts a worker by calling: Brother.Worker.start_link(arg)
       # {Brother.Worker, arg}
-      {Brother, {:julia, "Coffee... that's the stuff!"}}
+      Brother, # using Brother's child_spec with default args of []
+      {Brother, {:winston, "It's not true, so it can't be."}}, # using Brother's child_spec function passing args
+      %{
+        id: :parsons,
+        start: {Brother, :start_link, [parsons: "Workin' hard, workin' hard"]},
+      }, # manually created child spec
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
