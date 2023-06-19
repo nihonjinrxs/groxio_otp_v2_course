@@ -8,6 +8,12 @@ defmodule Brother.Application do
   @impl true
   def start(_type, _args) do
     children = [
+      # Registry!
+      {Registry, keys: :unique, name: Brother.Registry},
+
+      # Just create a dynamic supervisor to handle starting processes on demand
+      {DynamicSupervisor, name: Brother.DynamicSupervisor},
+
       # using Brother's child_spec with default args of []:
       # Brother,
       # {Brother, []},
@@ -20,12 +26,9 @@ defmodule Brother.Application do
       # },
 
       # Consistent syntax
-      # {Brother, {:julia, "Coffee... that's the stuff!"}},
-      # {Brother, {:parsons, "Workin' hard, workin' hard"}},
-      # {Brother, {:winston, "It's not true, so it can't be."}},
-
-      # Just create a dynamic supervisor to handle starting processes on demand
-      {DynamicSupervisor, name: Brother.DynamicSupervisor}
+      {Brother, {:julia, "Coffee... that's the stuff!"}},
+      {Brother, {:parsons, "Workin' hard, workin' hard"}},
+      {Brother, {:winston, "It's not true, so it can't be."}},
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
