@@ -14,8 +14,7 @@ defmodule Brother do
     {:ok, arg}
   end
 
-  def child_spec([]), do: child_spec {:julia, "Coffee... that's the stuff!"}
-  def child_spec({name, _character_quote}=arg) do
+  def child_spec({name, _character_quote}=arg \\ {:julia, "Coffee... that's the stuff!"}) do
     %{
       id: name,
       start: {__MODULE__, :start_link, [arg]}
