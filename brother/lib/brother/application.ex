@@ -10,6 +10,7 @@ defmodule Brother.Application do
     children = [
       # Starts a worker by calling: Brother.Worker.start_link(arg)
       # {Brother.Worker, arg}
+      {Brother, {:julia, "Coffee... that's the stuff!"}}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
