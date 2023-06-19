@@ -18,9 +18,14 @@ defmodule Brother.Application do
       #   id: :parsons,
       #   start: {Brother, :start_link, [parsons: "Workin' hard, workin' hard"]},
       # },
-      {Brother, {:julia, "Coffee... that's the stuff!"}},
-      {Brother, {:parsons, "Workin' hard, workin' hard"}},
-      {Brother, {:winston, "It's not true, so it can't be."}},
+
+      # Consistent syntax
+      # {Brother, {:julia, "Coffee... that's the stuff!"}},
+      # {Brother, {:parsons, "Workin' hard, workin' hard"}},
+      # {Brother, {:winston, "It's not true, so it can't be."}},
+
+      # Just create a dynamic supervisor to handle starting processes on demand
+      {DynamicSupervisor, name: Brother.DynamicSupervisor}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

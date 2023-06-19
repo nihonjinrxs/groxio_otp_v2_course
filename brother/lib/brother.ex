@@ -7,6 +7,10 @@ defmodule Brother do
     GenServer.start_link(__MODULE__, arg, name: name)
   end
 
+  def start_child(arg) do
+    DynamicSupervisor.start_child(__MODULE__.DynamicSupervisor, {__MODULE__, arg})
+  end
+
   # server callbacks
   
   def init({name, _character_quote}=arg) do
